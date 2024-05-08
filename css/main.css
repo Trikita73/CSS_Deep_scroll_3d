@@ -20,7 +20,7 @@ body {
 }
 
 .scene {
-    height: 300vh;
+    height: 500vh;
 }
 
 .layer {
@@ -50,12 +50,23 @@ body {
 .layer:nth-child(4) { animation-name: animation-4; }
 @keyframes animation-4 { to { scale: 2; } }
 
-/* .layer:nth-child(1) { animation-name: animation-1; } */
+.layer:nth-child(5) { 
+    opacity: 0;
+    animation-range: 250vh 300vh;
+    animation-name: animation-end;
+}
+@keyframes animation-end { to { opacity: 1; } }
 
 .layer__content {
     padding: 5vh 5vw;
     backdrop-filter: blur(25px) brightness(.98); /* фильтр */
+    animation-timeline: scroll(); 
+    animation-timing-function: linear; 
+    animation-fill-mode: both;
+    animation-range: 0 50vh;
+    animation-name: animation-head;
 }
+@keyframes animation-head { to { opacity: 0; filter: blur(25px); } }
 
 .layer__content h1 {
     text-transform: uppercase;
@@ -64,3 +75,20 @@ body {
     line-height: .9em;
     letter-spacing: -.15vw;
 }
+
+.layer_end  h3 { 
+    font-size: 4rem;
+}
+
+.layer_end::before {
+    content: '';
+    background-color: #01122B;
+    inset: 0;
+    position: absolute;
+    animation-timeline: scroll(); 
+    animation-timing-function: linear; 
+    animation-fill-mode: both;
+    animation-range: 300vh 450vh;
+    animation-name: animation-bg;
+}
+@keyframes animation-bg { to { opacity: 1; } }
